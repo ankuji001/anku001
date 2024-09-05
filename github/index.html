@@ -1,0 +1,1876 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.20/build/spline-viewer.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+   <style>
+     * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        body {
+            background: #f9f9f9;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: black;
+        padding: 1rem;
+        position: relative;
+        top: 0%; 
+}
+
+.logo a {
+color: white;
+text-decoration: none;
+font-size: 1.5rem;
+}
+
+.menu-toggle {
+display: none;
+font-size: 1.5rem;
+color: white;
+cursor: pointer;
+}
+
+.nav-links {
+list-style: none;
+margin: 0;
+padding: 0;
+display: flex;
+}
+
+.nav-links li {
+margin: 0 1rem;
+}
+
+.nav-links a {
+color: white;
+text-decoration: none;
+font-size: 1rem;
+}
+
+.nav-links a:hover {
+text-decoration: underline;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+.menu-toggle {
+    display: block;
+}
+
+.nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+}
+
+.nav-links.active {
+    display: flex;
+}
+
+.nav-links li {
+    margin: 1rem 0;
+}
+}
+
+/* spline 3d background */
+.spline-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            overflow: hidden;
+        }
+        .spline-viewer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        /*  stars i background */
+.star-container {
+width: 100%;
+background-color: black;
+z-index: -1;
+overflow: hidden; /* Ensure stars don't overflow the container */
+}
+
+/* Styling for the stars */
+.stars {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+overflow: hidden; /* Ensure stars don't overflow the container */
+
+}
+
+.star {
+position: absolute;
+border-radius: 50%;
+background: rgba(255, 255, 255, 0.7); /* Color of the stars */
+opacity: 0.8; /* Glow effect */
+animation: twinkle 2s infinite; /* Apply twinkle animation */
+}
+
+/* Animation for glowing stars */
+@keyframes twinkle {
+0% { opacity: 0.6; }
+50% { opacity: 1; }
+100% { opacity: 0.6; }
+}
+.container-1 {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
+          gap: 10px; /* Adjust spacing between elements */
+          padding: 20px;
+      }
+    
+      .image {
+          max-width: 30%;
+          height: auto;
+          flex: 1;
+      }
+    
+      .text {
+          flex: 1;
+          color: white;
+          max-width: 500px; /* Adjust the max-width as needed */
+      }
+    
+      /* Mobile view */
+      @media (max-width: 768px) {
+          .container {
+              flex-direction: column;
+              align-items: center;
+          }
+      }
+          /* about card   */
+       
+    
+          
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      
+      .col-md-4 {
+        flex: 1;
+        padding: 15px;
+      }
+      
+      /* Make images responsive */
+      .img-fluid {
+        max-width: 100%;
+        height: auto;
+      }
+      
+/* Card Styling */
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: auto; /* Auto height for better responsiveness */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  font-family: Montserrat, sans-serif;
+  font-weight: bold;
+  padding: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  z-index: 1;
+  row-gap: 1em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Added box-shadow for better visibility */
+}
+
+.card img {
+  width: 12em;
+  margin-right: 1em;
+  animation: move 10s ease-in-out infinite;
+  z-index: 5;
+}
+
+.image:hover {
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.icons svg {
+  width: 20px;
+  height: 20px;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: -3px;
+  border-radius: 10px;
+  background: transparent;
+  transform: translate(-5px, 250px);
+  transition: 0.4s ease-in-out;
+  z-index: -1;
+}
+
+.card:hover::before {
+  width: 150%;
+  height: 100%;
+  margin-left: -4.25em;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 20px;
+  background: transparent;
+  transition: all 0.4s ease-in-out;
+  z-index: -1;
+}
+
+.heading {
+  z-index: 2;
+  transition: 0.4s ease-in-out;
+}
+
+.card:hover .heading {
+  letter-spacing: 0.025em;
+}
+
+.heading::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  opacity: 1;
+  box-shadow: 220px 118px #fff, 280px 176px #fff, 40px 50px #fff,
+    60px 180px #fff, 120px 130px #fff, 180px 176px #fff, 220px 290px #fff,
+    520px 250px #fff, 400px 220px #fff, 50px 350px #fff, 10px 230px #fff;
+  z-index: -1;
+  transition: 1s ease;
+  animation: 1s glowing-stars linear alternate infinite;
+  animation-delay: 0s;
+}
+
+.card:hover .heading::before,
+.card:hover .icons::before,
+.card:hover .icons::after {
+  filter: blur(3px);
+}
+
+.image:active {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+.image:active + .heading::before {
+  box-shadow: 240px 20px #9b40fc, 240px 25px #9b40fc, 240px 30px #9b40fc,
+    240px 35px #9b40fc, 240px 40px #9b40fc, 242px 45px #9b40fc,
+    246px 48px #9b40fc, 251px 49px #9b40fc, 256px 48px #9b40fc,
+    260px 45px #9b40fc, 262px 40px #9b40fc;
+  animation: none;
+  filter: blur(0);
+  border-radius: 2px;
+  width: 0.45em;
+  height: 0.45em;
+  scale: 0.65;
+  transform: translateX(9em) translateY(1em);
+}
+
+.image:active ~ .icons::before {
+  box-shadow: 262px 35px #9b40fc, 262px 30px #9b40fc, 262px 25px #9b40fc,
+    262px 20px #9b40fc, 275px 20px #9b40fc, 275px 24px #9b40fc,
+    275px 28px #9b40fc, 275px 32px #9b40fc, 275px 36px #9b40fc,
+    275px 40px #9b40fc, 275px 44px #9b40fc, 275px 48px #9b40fc;
+  animation: none;
+  filter: blur(0);
+  border-radius: 2px;
+  width: 0.45em;
+  height: 0.45em;
+  scale: 0.65;
+  transform: translateX(9em) translateY(1em);
+}
+
+.image:active ~ .icons::after {
+  box-shadow: 238px 60px #9b40fc, 242px 60px #9b40fc, 246px 60px #9b40fc,
+    250px 60px #9b40fc, 254px 60px #9b40fc, 258px 60px #9b40fc,
+    262px 60px #9b40fc, 266px 60px #9b40fc, 270px 60px #9b40fc,
+    274px 60px #9b40fc, 278px 60px #9b40fc, 282px 60px #9b40fc,
+    234px 60px #9b40fc, 234px 60px #9b40fc;
+  animation: none;
+  filter: blur(0);
+  border-radius: 2px;
+  width: 0.45em;
+  height: 0.45em;
+  scale: 0.65;
+  transform: translateX(9em) translateY(1.25em);
+}
+
+.heading::after {
+  content: "";
+  top: -8.5%;
+  left: -8.5%;
+  position: absolute;
+  width: 7.5em;
+  height: 7.5em;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  background: #f9f9fb;
+  box-shadow: 0px 0px 100px rgba(193, 119, 241, 0.8),
+    0px 0px 100px rgba(135, 42, 211, 0.8), inset #9b40fc 0px 0px 40px -12px;
+  transition: 0.4s ease-in-out;
+  z-index: -1;
+}
+
+.card:hover .heading::after {
+  box-shadow: 0px 0px 200px rgba(193, 119, 241, 1),
+    0px 0px 200px rgba(135, 42, 211, 1), inset #9b40fc 0px 0px 40px -12px;
+}
+
+.card:hover .instagram::before,
+.card:hover .x::before,
+.card:hover .discord::before {
+  filter: blur(3px);
+}
+
+.image:active ~ .icons .instagram::before,
+.image:active ~ .icons .x::before,
+.image:active ~ .icons .discord::before {
+  animation: none;
+  opacity: 0;
+}
+
+@keyframes shootingStar {
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-55em) translateY(0);
+    opacity: 1;
+  }
+  70% {
+    transform: translateX(-70em) translateY(0);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+    opacity: 0;
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(0em) translateY(0em);
+  }
+  25% {
+    transform: translateY(-1em) translateX(-1em);
+    rotate: -10deg;
+  }
+  50% {
+    transform: translateY(1em) translateX(-1em);
+  }
+  75% {
+    transform: translateY(-1.25em) translateX(1em);
+    rotate: 10deg;
+  }
+  100% {
+    transform: translateX(0em) translateY(0em);
+  }
+}
+
+@keyframes glowing-stars {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+
+.container-button {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: "bt-1 bt-2 bt-3"
+    "bt-4 bt-5 bt-6";
+  position: relative;
+  perspective: 800;
+  padding: 0;
+  width: 135px;
+  height: 47px;
+  transition: all 0.3s ease-in-out;
+}
+
+.container-button:active {
+  transform: scale(0.95);
+}
+
+.hover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+}
+
+.bt-1 {
+  grid-area: bt-1;
+}
+
+.bt-2 {
+  grid-area: bt-2;
+}
+
+.bt-3 {
+  grid-area: bt-3;
+}
+
+.bt-4 {
+  grid-area: bt-4;
+}
+
+.bt-5 {
+  grid-area: bt-5;
+}
+
+.bt-6 {
+  grid-area: bt-6;
+}
+
+.bt-1:hover ~ button {
+  transform: rotateX(15deg) rotateY(-15deg) rotateZ(0deg);
+  box-shadow: -2px -2px #18181888;
+}
+
+.bt-1:hover ~ button::after {
+  animation: shake 0.5s ease-in-out 0.3s;
+  text-shadow: -2px -2px #18181888;
+}
+
+.bt-3:hover ~ button {
+  transform: rotateX(15deg) rotateY(15deg) rotateZ(0deg);
+  box-shadow: 2px -2px #18181888;
+}
+
+.bt-3:hover ~ button::after {
+  animation: shake 0.5s ease-in-out 0.3s;
+  text-shadow: 2px -2px #18181888;
+}
+
+.bt-4:hover ~ button {
+  transform: rotateX(-15deg) rotateY(-15deg) rotateZ(0deg);
+  box-shadow: -2px 2px #18181888;
+}
+
+.bt-4:hover ~ button::after {
+  animation: shake 0.5s ease-in-out 0.3s;
+  text-shadow: -2px 2px #18181888;
+}
+
+.bt-6:hover ~ button {
+  transform: rotateX(-15deg) rotateY(15deg) rotateZ(0deg);
+  box-shadow: 2px 2px #18181888;
+}
+
+.bt-6:hover ~ button::after {
+  animation: shake 0.5s ease-in-out 0.3s;
+  text-shadow: 2px 2px #18181888;
+}
+
+.hover:hover ~ button::before {
+  background: transparent;
+}
+
+.hover:hover ~ button::after {
+  content: "Welcome";
+  top: -150%;
+  transform: translate(-50%, 0);
+  font-size: 25px;
+  color: #492ca9;
+}
+
+button {
+  position: absolute;
+  padding: 0;
+  width: 135px;
+  height: 47px;
+  background: transparent;
+  font-size: 17px;
+  font-weight: 900;
+  border: 3px solid #7218b1;
+  border-radius: 12px;
+  transition: all 0.3s ease-in-out;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 135px;
+  height: 47px;
+  background-color: #542398;
+  border-radius: 12px;
+  transition: all 0.3s ease-in-out;
+  z-index: -1;
+}
+
+button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 135px;
+  height: 47px;
+  background-color: transparent;
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 47px;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  transition: all 0.3s ease-in-out;
+  z-index: 2;
+}
+
+@keyframes shake {
+  0% {
+    left: 45%;
+  }
+
+  25% {
+    left: 54%;
+  }
+
+  50% {
+    left: 48%;
+  }
+
+  75% {
+    left: 52%;
+  }
+
+  100% {
+    left: 50%;
+  }
+}
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .card {
+    width: 95%;
+    max-width: 100%;
+    padding: 1em;
+  }
+
+  .card img {
+    width: 100%;
+    margin: 0;
+  }
+
+  .heading {
+    font-size: 24px;
+  }
+
+  .card p {
+    font-size: 16px;
+  }
+
+  .container-button {
+    width: 100px;
+    height: 40px;
+  }
+
+  button {
+    width: 100px;
+    height: 40px;
+    font-size: 15px;
+  }
+
+  button::after {
+    font-size: 15px;
+  }
+
+  .col-md-4 {
+    display: none; /* Hide image column on smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .card {
+    width: 100%;
+    padding: 0.5em;
+  }
+
+  .card img {
+    width: 100%;
+    margin: 0;
+  }
+
+  .heading {
+    font-size: 18px;
+  }
+
+  .card p {
+    font-size: 12px;
+  }
+
+  .container-button {
+    width: 80px;
+    height: 35px;
+  }
+
+  button {
+    width: 80px;
+    height: 35px;
+    font-size: 14px;
+  }
+
+  button::after {
+    font-size: 14px;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 576px) {
+  .col-md-4 {
+    display: block; /* Display image column on mobile screens */
+    width: 100%;
+    margin-top: 1em;
+  }
+}
+
+
+               
+
+     
+
+   </style>
+</head>
+
+  <body style="background-color: black;" >
+    <header>
+        <div>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="#">logo</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                ☰
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="spline-container">
+        <spline-viewer class="spline-viewer" url="https://prod.spline.design/A7WQbaC3nF6YjOzU/scene.splinecode"></spline-viewer>   </div>
+<div class="star-container">
+<div class="stars"></div>
+
+</div>
+<div class="about" style="color: #f2f2f2; justify-content: center; text-align: center; ">
+    <h2>ABOUT UTSAV </h2>
+    <p>
+      We think that it is about manifesting, it is about memories which are created ! Utsav is a blend of technical <br> ,non-technical and cultural events that will definitely give an empyrean experience. <br> It is a perfect coalesce of fun and frolic of excitement and ecstacy, of devotion and dedication. <br>  The fest is dedicated to blossom the young artists from all over the country a ideal platform.
+    </p>
+  </div>
+  <div class="container-1">
+    <img class="image" src="11.png" alt="UTSAV Image"/>
+    <div class="text">
+        <p>
+            UTSAV is a vibrant celebration of student creativity and spirit, <br>
+            brimming with music, dance, and colorful activities. <br>
+            It’s a time when friendships are forged, and unforgettable memories are made. <br>
+            Amidst the excitement, it’s also a chance to showcase talents <br>
+            and enjoy the collective energy of the campus community.
+        </p>
+    </div>
+    
+  </div>
+  
+  <center>
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-md-8 col-lg-6">
+          <div class="card p-3">
+            <div class="heading" style="color: #7218b1;" >So why wait? Register now for UTSAV 2024</div>
+            <br>
+            <p style="color: white;margin-top: 40px; " >
+              Whether you're a student, professional, or just someone who loves technology and culture, UTSAV 2024 is the place to be this year. With a welcoming and inclusive atmosphere, exciting competitions, and plenty of opportunities to learn and grow, UTSAV 2024 is the perfect way to kick-start your journey towards a brighter and more creative future. See you there!
+            </p>
+            <br><br>
+            <div class="container-button">
+              <div class="hover bt-1"></div>
+              <div class="hover bt-2"></div>
+              <div class="hover bt-3"></div>
+              <div class="hover bt-4"></div>
+              <div class="hover bt-5"></div>
+              <div class="hover bt-6"></div>
+              <button style="color: white;"> Register</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 d-none d-md-block">
+          <img src="8.png" alt="Event Image" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </center>
+  
+<center>
+    <h1 style="color: white; padding: 20px; margin-bottom: 20px;" >
+        EVENTS
+    </h1>
+    <h3 style="color: #f9f9fb; background-color: #7218b1; border: #7218b1; border-radius: 25px; " > Technical Events </h3>
+</center>
+
+<center>
+  <div class="eventcards-container">
+    <!-- Event Card 1 -->
+    <a href="#" class="eventcards-btn1" id="openModal1">
+      <div class="eventcards">
+        <img src="perfo.jpg" alt="Card Image" class="card-img">
+        <div class="eventcards-content">
+          <h2 class="eventcards-title"><u>Poster Making</u></h2>
+          <p class="eventcards-text">This is a brief description of the card. It provides some information about the content or purpose of the card.</p>
+        </div>
+      </div>
+    </a>
+    
+    <!-- Modal 1 -->
+    <div class="modal1" id="myModal1">
+      <div class="modal-content1">
+        <span class="close-btn1" id="closeModal1">&times;</span>
+        <h2 style="color: white;"><u>Poster Making</u></h2>
+        <p style="color: white;">If you are capable of bringing in innovative project ideas to the platform, this event is for you. Utsav’23 presents the event of Project Display, to let the participants build a working or non-working project in form of software/hardware/hybrid.
+          Event Coordinators <br>
+          Dr. Pardeep Jindal : 9872495684 <br>
+          Dr. Md. Daniyal : 7417246066 <br>
+        </p>
+        <button class="register">Register</button>
+        <button class="rulebook" style="transform: translate(150%,-50%);">Rulebook</button>
+      </div>
+    </div>
+  
+<script>
+  // Get modal element
+const modal1 = document.getElementById('myModal1');
+
+// Get open modal button
+const openModalBtn1 = document.getElementById('openModal1');
+
+// Get close button
+const closeModalBtn1 = document.getElementById('closeModal1');
+
+// When the user clicks on the button, open the modal
+openModalBtn1.addEventListener('click', function(event) {
+  event.preventDefault(); // Prevent default anchor behavior
+  modal1.style.display = 'block';
+});
+
+// When the user clicks on <span> (x), close the modal
+closeModalBtn1.addEventListener('click', function() {
+  modal1.style.display = 'none';
+});
+
+// When the user clicks anywhere outside of the modal, close it
+window.addEventListener('click', function(event) {
+  if (event.target === modal1) {
+    modal1.style.display = 'none';
+  }
+});
+</script>
+    <!-- Event Card 2 -->
+    <a href="#" class="eventcards-btn2" id="openModal2">
+      <div class="eventcards">
+        <img src="perfo.jpg" alt="Card Image" class="card-img">
+        <div class="eventcards-content">
+          <h2 class="eventcards-title"><u>Poster Making</u></h2>
+          <p class="eventcards-text">This is a brief description of the card. It provides some information about the content or purpose of the card.</p>
+        </div>
+      </div>
+    </a>
+  
+    <!-- Modal 2 -->
+    <div class="modal2" id="myModal2">
+      <div class="modal-content2">
+        <span class="close-btn2" id="closeModal2">&times;</span>
+        <h2 style="color: white;"><u>Poster Making</u></h2>
+        <p style="color: white;">If you are capable of bringing in innovative project ideas to the platform, this event is for you. Utsav’23 presents the event of Project Display, to let the participants build a working or non-working project in form of software/hardware/hybrid.
+          Event Coordinators <br>
+          Dr. Pardeep Jindal : 9872495684 <br>
+          Dr. Md. Daniyal : 7417246066 <br>
+        </p>
+        <button class="register">Register</button>
+        <button class="rulebook" style="transform: translate(150%,-100%);">Rulebook</button>
+      </div>
+    </div>
+    
+<script>
+  // Get modal element
+const modal2 = document.getElementById('myModal2');
+
+// Get open modal button
+const openModalBtn2 = document.getElementById('openModal2');
+
+// Get close button
+const closeModalBtn2 = document.getElementById('closeModal2');
+
+// When the user clicks on the button, open the modal
+openModalBtn2.addEventListener('click', function(event) {
+  event.preventDefault(); // Prevent default anchor behavior
+  modal2.style.display = 'block';
+});
+
+// When the user clicks on <span> (x), close the modal
+closeModalBtn2.addEventListener('click', function() {
+  modal2.style.display = 'none';
+});
+
+// When the user clicks anywhere outside of the modal, close it
+window.addEventListener('click', function(event) {
+  if (event.target === modal2) {
+    modal2.style.display = 'none';
+  }
+});
+</script>
+  
+    <!-- Event Card 3 -->
+    <a href="#" class="eventcards-btn3" id="openModal3">
+      <div class="eventcards">
+        <img src="perfo.jpg" alt="Card Image" class="card-img">
+        <div class="eventcards-content">
+          <h2 class="eventcards-title"><u>Poster Making</u></h2>
+          <p class="eventcards-text">This is a brief description of the card. It provides some information about the content or purpose of the card.</p>
+        </div>
+      </div>
+    </a>
+  
+    <!-- Modal 3-->
+    <div class="modal3" id="myModal3">
+      <div class="modal-content3">
+        <span class="close-btn3" id="closeModal3">&times;</span>
+        <h2 style="color: white;"><u>Poster Making</u></h2>
+        <p style="color: white;">If you are capable of bringing in innovative project ideas to the platform, this event is for you. Utsav’23 presents the event of Project Display, to let the participants build a working or non-working project in form of software/hardware/hybrid.
+          Event Coordinators <br>
+          Dr. Pardeep Jindal : 9872495684 <br>
+          Dr. Md. Daniyal : 7417246066 <br>
+        </p>
+        <button class="register">Register</button>
+        <button class="rulebook" style="transform: translate(150%,-100%);">Rulebook</button>
+      </div>
+    </div>
+  </div>
+  
+<script>
+  // Get modal element
+const modal3 = document.getElementById('myModal3');
+
+// Get open modal button
+const openModalBtn3 = document.getElementById('openModal3');
+
+// Get close button
+const closeModalBtn3 = document.getElementById('closeModal3');
+
+// When the user clicks on the button, open the modal
+openModalBtn3.addEventListener('click', function(event) {
+  event.preventDefault(); // Prevent default anchor behavior
+  modal3.style.display = 'block';
+});
+
+// When the user clicks on <span> (x), close the modal
+closeModalBtn3.addEventListener('click', function() {
+  modal3.style.display = 'none';
+});
+
+// When the user clicks anywhere outside of the modal, close it
+window.addEventListener('click', function(event) {
+  if (event.target === modal3) {
+    modal3.style.display = 'none';
+  }
+});
+</script>
+<style>
+  /* Container for event cards */
+.eventcards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.eventcards {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  background-color: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.eventcards:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.eventcards-content {
+  padding: 20px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.4) 100%);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  height: calc(100% - 200px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.eventcards:hover .eventcards-content {
+  opacity: 1;
+}
+
+.eventcards-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+}
+
+.eventcards-text {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #ddd;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* Modal Styles */
+.modal1, .modal2, .modal3 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+}
+
+.modal-content1, .modal-content2, .modal-content3 {
+  background-image: url(nontech.jpg);
+  background-size: cover; /* Cover the entire modal content area */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border-radius: 20px;
+  width: 80%; /* Could be more or less, depending on screen size */
+  max-width: 600px; /* Optional: limit max width */
+  color: white;
+}
+
+.close-btn1, .close-btn2, .close-btn3 {
+  color: #42433f;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-btn1:hover, .close-btn2:hover, .close-btn3:hover,
+.close-btn1:focus, .close-btn2:focus, .close-btn3:focus {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .eventcards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .eventcards {
+    width: 90%;
+    height: auto;
+  }
+}
+
+</style>  
+ </center>
+<center>
+<div>
+  <h3 style="color: #f9f9fb; background-color: #7218b1; border: #7218b1; border-radius: 25px; " > Non-Technical Events </h3>
+
+</div>
+</center>
+<center>
+  <div class="eventcards-container">
+    <!-- Event Card 4 -->
+    <a href="#" class="eventcards-btn4" id="openModal7">
+      <div class="eventcards">
+        <img src="perfo.jpg" alt="Card Image" class="card-img">
+        <div class="eventcards-content">
+          <h2 class="eventcards-title"><u>Poster Making</u></h2>
+          <p class="eventcards-text">This is a brief description of the card. It provides some information about the content or purpose of the card.</p>
+        </div>
+      </div>
+    </a>
+    
+    <!-- Modal 4 -->
+    <div class="modal4" id="myModal4">
+      <div class="modal-content4">
+        <span class="close-btn4" id="closeModal4">&times;</span>
+        <h2 style="color: white;"><u>Poster Making</u></h2>
+        <p style="color: white;">If you are capable of bringing in innovative project ideas to the platform, this event is for you. Utsav’23 presents the event of Project Display, to let the participants build a working or non-working project in form of software/hardware/hybrid.
+          Event Coordinators <br>
+          Dr. Pardeep Jindal : 9872495684 <br>
+          Dr. Md. Daniyal : 7417246066 <br>
+        </p>
+        <button class="register">Register</button>
+        <button class="rulebook" style="transform: translate(150%,-50%);">Rulebook</button>
+      </div>
+    </div>
+  
+<script>
+  // Get modal element
+const modal4 = document.getElementById('myModal4');
+
+// Get open modal button
+const openModalBtn4 = document.getElementById('openModal4');
+
+// Get close button
+const closeModalBtn4 = document.getElementById('closeModal4');
+
+// When the user clicks on the button, open the modal
+openModalBtn4.addEventListener('click', function(event) {
+  event.preventDefault(); // Prevent default anchor behavior
+  modal4.style.display = 'block';
+});
+
+// When the user clicks on <span> (x), close the modal
+closeModalBtn4.addEventListener('click', function() {
+  modal4.style.display = 'none';
+});
+
+// When the user clicks anywhere outside of the modal, close it
+window.addEventListener('click', function(event) {
+  if (event.target === modal4) {
+    modal4.style.display = 'none';
+  }
+});
+</script>
+    <!-- Event Card 5 -->
+    <a href="#" class="eventcards-btn5" id="openModal5">
+      <div class="eventcards">
+        <img src="perfo.jpg" alt="Card Image" class="card-img">
+        <div class="eventcards-content">
+          <h2 class="eventcards-title"><u>Poster Making</u></h2>
+          <p class="eventcards-text">This is a brief description of the card. It provides some information about the content or purpose of the card.</p>
+        </div>
+      </div>
+    </a>
+  
+    <!-- Modal 5 -->
+    <div class="modal5" id="myModal5">
+      <div class="modal-content5">
+        <span class="close-btn5" id="closeModal5">&times;</span>
+        <h2 style="color: white;"><u>Poster Making</u></h2>
+        <p style="color: white;">If you are capable of bringing in innovative project ideas to the platform, this event is for you. Utsav’23 presents the event of Project Display, to let the participants build a working or non-working project in form of software/hardware/hybrid.
+          Event Coordinators <br>
+          Dr. Pardeep Jindal : 9872495684 <br>
+          Dr. Md. Daniyal : 7417246066 <br>
+        </p>
+        <button class="register">Register</button>
+        <button class="rulebook" style="transform: translate(150%,-100%);">Rulebook</button>
+      </div>
+    </div>
+    
+<script>
+  // Get modal element
+const modal5 = document.getElementById('myModal5');
+
+// Get open modal button
+const openModalBtn5 = document.getElementById('openModal5');
+
+// Get close button
+const closeModalBtn5 = document.getElementById('closeModal5');
+
+// When the user clicks on the button, open the modal
+openModalBtn5.addEventListener('click', function(event) {
+  event.preventDefault(); // Prevent default anchor behavior
+  modal5.style.display = 'block';
+});
+
+// When the user clicks on <span> (x), close the modal
+closeModalBtn5.addEventListener('click', function() {
+  modal5.style.display = 'none';
+});
+
+// When the user clicks anywhere outside of the modal, close it
+window.addEventListener('click', function(event) {
+  if (event.target === modal5) {
+    modal5.style.display = 'none';
+  }
+});
+</script>
+  
+    <!-- Event Card 6 -->
+    <a href="#" class="eventcards-btn6" id="openModal6">
+      <div class="eventcards">
+        <img src="perfo.jpg" alt="Card Image" class="card-img">
+        <div class="eventcards-content">
+          <h2 class="eventcards-title"><u>Poster Making</u></h2>
+          <p class="eventcards-text">This is a brief description of the card. It provides some information about the content or purpose of the card.</p>
+        </div>
+      </div>
+    </a>
+  
+    <!-- Modal 6 -->
+    <div class="modal6" id="myModal6">
+      <div class="modal-content6">
+        <span class="close-btn6" id="closeModal6">&times;</span>
+        <h2 style="color: white;"><u>Poster Making</u></h2>
+        <p style="color: white;">If you are capable of bringing in innovative project ideas to the platform, this event is for you. Utsav’23 presents the event of Project Display, to let the participants build a working or non-working project in form of software/hardware/hybrid.
+          Event Coordinators <br>
+          Dr. Pardeep Jindal : 9872495684 <br>
+          Dr. Md. Daniyal : 7417246066 <br>
+        </p>
+        <button class="register">Register</button>
+        <button class="rulebook" style="transform: translate(150%,-100%);">Rulebook</button>
+      </div>
+    </div>
+  </div>
+  
+<script>
+  // Get modal element
+const modal6 = document.getElementById('myModal6');
+
+// Get open modal button
+const openModalBtn6 = document.getElementById('openModal6');
+
+// Get close button
+const closeModalBtn6 = document.getElementById('closeModal6');
+
+// When the user clicks on the button, open the modal
+openModalBtn6.addEventListener('click', function(event) {
+  event.preventDefault(); // Prevent default anchor behavior
+  modal6.style.display = 'block';
+});
+
+// When the user clicks on <span> (x), close the modal
+closeModalBtn6.addEventListener('click', function() {
+  modal6.style.display = 'none';
+});
+
+// When the user clicks anywhere outside of the modal, close it
+window.addEventListener('click', function(event) {
+  if (event.target === modal6) {
+    modal6.style.display = 'none';
+  }
+});
+</script>
+<style>
+  /* Container for event cards */
+.eventcards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.eventcards {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  background-color: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.eventcards:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.eventcards-content {
+  padding: 20px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.4) 100%);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  height: calc(100% - 200px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.eventcards:hover .eventcards-content {
+  opacity: 1;
+}
+
+.eventcards-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+}
+
+.eventcards-text {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #ddd;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* Modal Styles */
+.modal3, .modal4, .modal5 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+}
+
+.modal-content3, .modal-content4, .modal-content5 {
+  background-image: url(nontech.jpg);
+  background-size: cover; /* Cover the entire modal content area */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border-radius: 20px;
+  width: 80%; /* Could be more or less, depending on screen size */
+  max-width: 600px; /* Optional: limit max width */
+  color: white;
+}
+
+.close-btn3, .close-btn4, .close-btn5 {
+  color: #42433f;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-btn3:hover, .close-btn4:hover, .close-btn5:hover,
+.close-btn3:focus, .close-btn4:focus, .close-btn5:focus {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .eventcards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .eventcards {
+    width: 90%;
+    height: auto;
+  }
+}
+
+</style>  
+ </center>
+
+<center>
+  <div>
+    <h3 style="color: #f9f9fb; background-color: #7218b1; border: #7218b1; border-radius: 25px; " > Cultural Events </h3>
+  
+  </div>
+  </center>
+ <center>
+  <div class="eventcards-container">
+    <!-- Event Card 7 -->
+    <a href="#" class="eventcards-btn7" id="openModal7">
+      <div class="eventcards">
+        <img src="perfo.jpg" alt="Card Image" class="card-img">
+        <div class="eventcards-content">
+          <h2 class="eventcards-title"><u>Poster Making</u></h2>
+          <p class="eventcards-text">This is a brief description of the card. It provides some information about the content or purpose of the card.</p>
+        </div>
+      </div>
+    </a>
+    
+    <!-- Modal 7 -->
+    <div class="modal7" id="myModal7">
+      <div class="modal-content7">
+        <span class="close-btn7" id="closeModal7">&times;</span>
+        <h2 style="color: white;"><u>Poster Making</u></h2>
+        <p style="color: white;">If you are capable of bringing in innovative project ideas to the platform, this event is for you. Utsav’23 presents the event of Project Display, to let the participants build a working or non-working project in form of software/hardware/hybrid.
+          Event Coordinators <br>
+          Dr. Pardeep Jindal : 9872495684 <br>
+          Dr. Md. Daniyal : 7417246066 <br>
+        </p>
+        <button class="register">Register</button>
+        <button class="rulebook" style="transform: translate(150%,-50%);">Rulebook</button>
+      </div>
+    </div>
+  
+<script>
+  // Get modal element
+const modal7 = document.getElementById('myModal7');
+
+// Get open modal button
+const openModalBtn7 = document.getElementById('openModal7');
+
+// Get close button
+const closeModalBtn7 = document.getElementById('closeModal7');
+
+// When the user clicks on the button, open the modal
+openModalBtn7.addEventListener('click', function(event) {
+  event.preventDefault(); // Prevent default anchor behavior
+  modal7.style.display = 'block';
+});
+
+// When the user clicks on <span> (x), close the modal
+closeModalBtn7.addEventListener('click', function() {
+  modal7.style.display = 'none';
+});
+
+// When the user clicks anywhere outside of the modal, close it
+window.addEventListener('click', function(event) {
+  if (event.target === modal7) {
+    modal7.style.display = 'none';
+  }
+});
+</script>
+    <!-- Event Card 8 -->
+    <a href="#" class="eventcards-btn8" id="openModal8">
+      <div class="eventcards">
+        <img src="perfo.jpg" alt="Card Image" class="card-img">
+        <div class="eventcards-content">
+          <h2 class="eventcards-title"><u>Poster Making</u></h2>
+          <p class="eventcards-text">This is a brief description of the card. It provides some information about the content or purpose of the card.</p>
+        </div>
+      </div>
+    </a>
+  
+    <!-- Modal 8 -->
+    <div class="modal8" id="myModal8">
+      <div class="modal-content8">
+        <span class="close-btn8" id="closeModal8">&times;</span>
+        <h2 style="color: white;"><u>Poster Making</u></h2>
+        <p style="color: white;">If you are capable of bringing in innovative project ideas to the platform, this event is for you. Utsav’23 presents the event of Project Display, to let the participants build a working or non-working project in form of software/hardware/hybrid.
+          Event Coordinators <br>
+          Dr. Pardeep Jindal : 9872495684 <br>
+          Dr. Md. Daniyal : 7417246066 <br>
+        </p>
+        <button class="register">Register</button>
+        <button class="rulebook" style="transform: translate(150%,-100%);">Rulebook</button>
+      </div>
+    </div>
+    
+<script>
+  // Get modal element
+const modal8 = document.getElementById('myModal8');
+
+// Get open modal button
+const openModalBtn8 = document.getElementById('openModal8');
+
+// Get close button
+const closeModalBtn8 = document.getElementById('closeModal8');
+
+// When the user clicks on the button, open the modal
+openModalBtn8.addEventListener('click', function(event) {
+  event.preventDefault(); // Prevent default anchor behavior
+  modal8.style.display = 'block';
+});
+
+// When the user clicks on <span> (x), close the modal
+closeModalBtn8.addEventListener('click', function() {
+  modal8.style.display = 'none';
+});
+
+// When the user clicks anywhere outside of the modal, close it
+window.addEventListener('click', function(event) {
+  if (event.target === modal8) {
+    modal8.style.display = 'none';
+  }
+});
+</script>
+  
+    <!-- Event Card 9 -->
+    <a href="#" class="eventcards-btn9" id="openModal9">
+      <div class="eventcards">
+        <img src="perfo.jpg" alt="Card Image" class="card-img">
+        <div class="eventcards-content">
+          <h2 class="eventcards-title"><u>Poster Making</u></h2>
+          <p class="eventcards-text">This is a brief description of the card. It provides some information about the content or purpose of the card.</p>
+        </div>
+      </div>
+    </a>
+  
+    <!-- Modal 9 -->
+    <div class="modal9" id="myModal9">
+      <div class="modal-content9">
+        <span class="close-btn9" id="closeModal9">&times;</span>
+        <h2 style="color: white;"><u>Poster Making</u></h2>
+        <p style="color: white;">If you are capable of bringing in innovative project ideas to the platform, this event is for you. Utsav’23 presents the event of Project Display, to let the participants build a working or non-working project in form of software/hardware/hybrid.
+          Event Coordinators <br>
+          Dr. Pardeep Jindal : 9872495684 <br>
+          Dr. Md. Daniyal : 7417246066 <br>
+        </p>
+        <button class="register">Register</button>
+        <button class="rulebook" style="transform: translate(150%,-100%);">Rulebook</button>
+      </div>
+    </div>
+  </div>
+  
+<script>
+  // Get modal element
+const modal9 = document.getElementById('myModal9');
+
+// Get open modal button
+const openModalBtn9 = document.getElementById('openModal9');
+
+// Get close button
+const closeModalBtn9 = document.getElementById('closeModal9');
+
+// When the user clicks on the button, open the modal
+openModalBtn9.addEventListener('click', function(event) {
+  event.preventDefault(); // Prevent default anchor behavior
+  modal9.style.display = 'block';
+});
+
+// When the user clicks on <span> (x), close the modal
+closeModalBtn9.addEventListener('click', function() {
+  modal9.style.display = 'none';
+});
+
+// When the user clicks anywhere outside of the modal, close it
+window.addEventListener('click', function(event) {
+  if (event.target === modal9) {
+    modal9.style.display = 'none';
+  }
+});
+</script>
+<style>
+  /* Container for event cards */
+.eventcards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.eventcards {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  background-color: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.eventcards:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.eventcards-content {
+  padding: 20px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.4) 100%);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  height: calc(100% - 200px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.eventcards:hover .eventcards-content {
+  opacity: 1;
+}
+
+.eventcards-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+}
+
+.eventcards-text {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #ddd;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* Modal Styles */
+.modal7, .modal8, .modal9 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+}
+
+.modal-content7, .modal-content8, .modal-content9 {
+  background-image: url(nontech.jpg);
+  background-size: cover; /* Cover the entire modal content area */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border-radius: 20px;
+  width: 80%; /* Could be more or less, depending on screen size */
+  max-width: 600px; /* Optional: limit max width */
+  color: white;
+}
+
+.close-btn7, .close-btn8, .close-btn9 {
+  color: #42433f;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-btn7:hover, .close-btn8:hover, .close-btn9:hover,
+.close-btn7:focus, .close-btn8:focus, .close-btn9:focus {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .eventcards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .eventcards {
+    width: 90%;
+    height: auto;
+  }
+}
+
+</style>  
+ </center>
+
+ <div>
+  <h1 style="color: #f9f9fb; font-size: 50px; " > <u> PERFORMERS</u> </h1>
+
+</div>
+<div class="performer-cards-container">
+  <div class="performercard">
+    <img src="performer1.jpg" alt="" style="height: 300px; width: auto;">
+    <svg viewBox="0 0 24 24">
+      <path d="M20 5H4V19L13.2923 9.70649C13.6828 9.31595 14.3159 9.31591 14.7065 9.70641L20 15.0104V5ZM2 3.9934C2 3.44476 2.45531 3 2.9918 3H21.0082C21.556 3 22 3.44495 22 3.9934V20.0066C22 20.5552 21.5447 21 21.0082 21H2.9918C2.44405 21 2 20.5551 2 20.0066V3.9934ZM8 11C6.89543 11 6 10.1046 6 9C6 7.89543 6.89543 7 8 7C9.10457 7 10 7.89543 10 9C10 10.1046 9.10457 11 8 11Z"></path>
+    </svg>
+    <div class="performercard__content">
+      <p class="performercard__title">performer name</p>
+      <p class="performercard__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </div>
+  </div>
+  <div class="performercard">
+    <img src="perfo.jpg" alt="" style="height: 300px; width: auto;">
+    <svg viewBox="0 0 24 24">
+      <path d="M20 5H4V19L13.2923 9.70649C13.6828 9.31595 14.3159 9.31591 14.7065 9.70641L20 15.0104V5ZM2 3.9934C2 3.44476 2.45531 3 2.9918 3H21.0082C21.556 3 22 3.44495 22 3.9934V20.0066C22 20.5552 21.5447 21 21.0082 21H2.9918C2.44405 21 2 20.5551 2 20.0066V3.9934ZM8 11C6.89543 11 6 10.1046 6 9C6 7.89543 6.89543 7 8 7C9.10457 7 10 7.89543 10 9C10 10.1046 9.10457 11 8 11Z"></path>
+    </svg>
+    <div class="performercard__content">
+      <p class="performercard__title">performer name</p>
+      <p class="performercard__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </div>
+  </div>
+</div>
+
+<style>
+.performer-cards-container {
+display: flex;
+flex-wrap: wrap;
+gap: 20px; /* Space between cards */
+justify-content: center;
+padding: 20px;
+}
+
+.performercard {
+position: relative;
+width: 300px;
+height: 300px;
+background-color: black;
+border-radius: 10px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+perspective: 1000px;
+box-shadow: 0 0 0 5px #ffffff80;
+transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.performercard img {
+width: 100%;
+height: auto;
+border-bottom: 2px solid #ddd;
+transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.performercard.active img,
+.performercard:hover img {
+transform: scale(1.05);
+}
+
+.performercard svg {
+width: 48px;
+fill: #333;
+transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.performercard.active svg,
+.performercard:hover svg {
+transform: scale(0);
+}
+
+.performercard__content {
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+padding: 20px;
+box-sizing: border-box;
+background-color: black;
+transform: translateY(100%);
+transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.performercard.active .performercard__content,
+.performercard:hover .performercard__content {
+transform: translateY(0);
+}
+
+.performercard__title {
+margin: 0;
+font-size: 24px;
+color: wheat;
+font-weight: 700;
+}
+
+.performercard__description {
+margin: 10px 0 0;
+font-size: 14px;
+color: wheat;
+line-height: 1.4;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+.performer-cards-container {
+  flex-direction: column;
+  align-items: center;
+}
+
+.performercard {
+  width: 90%; /* Adjust width for smaller screens */
+}
+}
+
+@media (min-width: 769px) {
+.performer-cards-container {
+  flex-direction: row;
+}
+}
+
+
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const cards = document.querySelectorAll('.performercard');
+
+  cards.forEach(card => {
+    card.addEventListener('touchstart', function () {
+      // Remove 'active' class from all cards
+      cards.forEach(c => c.classList.remove('active'));
+      
+      // Add 'active' class to the touched card
+      this.classList.add('active');
+    });
+
+    card.addEventListener('click', function () {
+      // Toggle 'active' class on click for better interaction
+      this.classList.toggle('active');
+    });
+
+    // Remove 'active' class when the user touches outside the card
+    document.addEventListener('touchstart', function (e) {
+      if (!card.contains(e.target)) {
+        card.classList.remove('active');
+      }
+    }, { passive: true });
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  // Get modal element
+  const modal = document.getElementById('myModal');
+
+  // Get open modal button
+  const openModalBtn = document.getElementById('openModal');
+
+  // Get close button
+  const closeModalBtn = document.getElementById('closeModal');
+
+  // When the user clicks on the button, open the modal
+  openModalBtn.addEventListener('click', function(event) {
+      event.preventDefault(); // Prevent default anchor behavior
+      modal.style.display = 'block';
+  });
+
+  // When the user clicks on <span> (x), close the modal
+  closeModalBtn.addEventListener('click', function() {
+      modal.style.display = 'none';
+  });
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.addEventListener('click', function(event) {
+      if (event.target === modal) {
+          modal.style.display = 'none';
+      }
+  });
+</script>
+
+  
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const starContainer = document.querySelector('.stars');
+    const numStars = 100; // Adjust number of stars as needed
+    const starSize = 2; // Adjust size of stars as needed
+    
+    for (let i = 0; i < numStars; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.width = `${starSize}px`;
+      star.style.height = `${starSize}px`;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      
+      // Add a random animation delay to enhance the twinkle effect
+      star.style.animationDelay = `${Math.random() * 2}s`;
+      
+      starContainer.appendChild(star);
+    }
+    });
+
+    
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
